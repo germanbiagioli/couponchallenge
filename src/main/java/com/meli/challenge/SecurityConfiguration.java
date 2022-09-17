@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.meli.challenge.security.config.JwtAuthenticationFilter;
 
 /**
- * @author german
+ * @author German Biagioli
  *
  */
 @EnableWebSecurity
@@ -40,12 +40,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf().disable()
-                .authorizeHttpRequests().antMatchers("/login/auth").permitAll().antMatchers("/index/**").permitAll()
+                .authorizeHttpRequests().antMatchers("/login/auth","/index/**","/h2/**","/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated().and()
                 .exceptionHandling().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class).headers().frameOptions().sameOrigin();
+
         return httpSecurity.build();
     }
 

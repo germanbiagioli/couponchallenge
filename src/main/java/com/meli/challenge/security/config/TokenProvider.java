@@ -19,7 +19,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 
 /**
- * @author german
+ * @author German Biagioli
  *
  */
 @Component

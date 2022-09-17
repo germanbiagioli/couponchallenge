@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.meli.challenge.security.config.TokenProvider;
 import com.meli.challenge.security.entity.JwtResponse;
-import com.meli.challenge.security.entity.UserDTO;
+import com.meli.challenge.security.entity.UserLogin;
 
 /**
  * @author german
@@ -31,7 +31,7 @@ public class LoginController {
      TokenProvider tokenProvider;
      
      @PostMapping("/auth")
-     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody UserDTO login) {
+     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody UserLogin login) {
          Authentication authentication = authenticationManager
              .authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
          SecurityContextHolder.getContext().setAuthentication(authentication);

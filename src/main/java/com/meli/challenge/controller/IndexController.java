@@ -13,18 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author german
  *
  */
 @RestController
 @RequestMapping("/index")
+@ApiOperation(value = "This method return candidate contact information.")
 public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
 	public Map<String, String> index() {
 		Map<String, String> result = new HashMap<String, String>();
-		result.put("Candidate", "German Biagioli");
 		result.put("Title", "Challenge: Cupón de compra");
+		result.put("Candidate", "German Biagioli");
+		result.put("Email", "german.biagioli@gmail.com");
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat simpleformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
 
